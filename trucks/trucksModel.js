@@ -5,7 +5,7 @@ module.exports = {
     getAll,
     create,
     findById,
-    findBy,
+    findUserTrucks,
     update,
     remove,
 }

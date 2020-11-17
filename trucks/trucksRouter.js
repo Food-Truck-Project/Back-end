@@ -2,8 +2,7 @@ const router = require("express").Router();
 const TrucksDb = require("./trucksModel");
 
 router.get("/", (req, res) => {
-    
-
+   
 })
 
 
