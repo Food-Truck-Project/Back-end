@@ -6,8 +6,13 @@ const jwt = require("jsonwebtoken");
 const { findById } = require("../users/userModel");
 
 router.get("/", async (req, res) => {
+    try {
   const users = await UsersDb.getAll();
   res.status(200).json(users);
+    } catch(err) {
+        res.status(500).json({errorMessage: "something went wrong!"})
+    }
+
 });
 
 router.post("/register", async (req, res) => {
