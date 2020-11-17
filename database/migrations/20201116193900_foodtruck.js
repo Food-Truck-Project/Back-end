@@ -75,6 +75,21 @@ exports.up = async function(knex) {
         .onUpdate('RESTRICT')
         .onDelete('RESTRICT')
       })
+      .createTable('diner_favoriteTrucks', tbl => {
+        tbl.increments();
+        tbl.integer("user_id")
+        .unsigned()
+        .references('id')
+        .inTable('users')
+        .onUpdate('RESTRICT')
+        .onDelete('RESTRICT')
+        tbl.integer("truck_id")
+        .unsigned()
+        .references('id')
+        .inTable('trucks')
+        .onUpdate('RESTRICT')
+        .onDelete('RESTRICT')
+      })
 
   };
   

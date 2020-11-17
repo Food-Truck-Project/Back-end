@@ -13,7 +13,7 @@ module.exports = {
 
 function getAll() {
     return db('trucks as t')
-    .select("t.id as truck_id", "t_o.truckName", "t.truckImg", "t.cuisineType")
+    .select("t.id as truck_id", "t.truckName", "t.truckImg", "t.cuisineType")
     .orderBy("id")
 }
 
