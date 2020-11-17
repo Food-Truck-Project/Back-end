@@ -3,7 +3,7 @@ const UsersDb = require("./userModel");
 const TrucksDb = require("../trucks/trucksModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const secret = require("../secrets");
+
 const restricted = require("./restrict-middleware");
 const role = require("../users/users-access");
 
