@@ -21,9 +21,10 @@
 **Note: username, password & email are all REQUIRED FIELDS and need to pass them as a payload while making the request.**
 
 **/[PUT] Updating endpoint for a single user in the database /**
+
 ```
 /api/users/:id/update
-
+```
 **Note: username, password & email are all REQUIRED FIELDS and need to pass them as a payload while making the request.**
 
 **/[DELETE] endpoint to Delete a single user in the database /**
