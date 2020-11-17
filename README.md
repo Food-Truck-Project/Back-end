@@ -1,6 +1,6 @@
 # Back-end
 
-## USERS
+## USERS ENDPOINTS 👤: 
 
 **/[GET] endpoint for all users in the database /**
 
