@@ -1,5 +1,7 @@
 # Back-end
 
+## USERS
+
 **/[GET] endpoint for all users in the database /**
 
 ```
