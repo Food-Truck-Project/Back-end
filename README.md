@@ -23,3 +23,4 @@ Note: username, password & email are all REQUIRED FIELDS and need to pass them a
 /[DELETE] endpoint to Delete a single user in the database /
 
 /api/users/:id
+
