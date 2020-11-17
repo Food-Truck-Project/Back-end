@@ -8,6 +8,11 @@
 /api/users
 ```
 
+**/[GET] endpoint for a user's trucks in the database /**
+```
+/api/users/:id/trucks
+```
+
 **/[POST] - Register endpoint for a new user in the database / **
 ```
 /api/users/register
