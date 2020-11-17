@@ -7,26 +7,18 @@ exports.up = async function(knex) {
       tbl.string("password", 255).notNullable().unique();
       tbl.string("email").notNullable().unique();
     })
-    .createTable('trucks_owned', tbl => {
-        tbl.increments();
-        tbl.string("truckName")
+ 
+     .createTable('trucks', tbl => {
+        tbl.increments()
         tbl.integer("user_id")
         .unsigned()
         .references("id")
         .inTable("users")
         .onDelete("RESTRICT")
         .onUpdate("RESTRICT")
-      })
-     .createTable('trucks', tbl => {
-        tbl.increments()
-        tbl.integer("truck_owned_id")
-        .unsigned()
-        .references("id")
-        .inTable("trucks_owned")
-        .onDelete("RESTRICT")
-        .onUpdate("RESTRICT")
+        tbl.string("truckName").notNullable()
         tbl.string("truckImg")
-        tbl.string("cuisineType")
+        tbl.string("cuisineType").notNullable()
         
       })
       .createTable('customers_ratings', tbl => {
@@ -56,6 +48,7 @@ exports.up = async function(knex) {
          
       })
       .createTable('trucks_ratings', tbl => {
+        tbl.increments();
         tbl.integer("truck_id")
         .unsigned()
         .references('id')

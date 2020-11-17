@@ -3,7 +3,6 @@ const UsersDb = require("../users/userModel");
 const bcrypt = require("bcrypt");
 const secrets = require("../secrets");
 const jwt = require("jsonwebtoken");
-const { findById } = require("../users/userModel");
 
 router.get("/", async (req, res) => {
     try {
