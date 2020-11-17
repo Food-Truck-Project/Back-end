@@ -2,7 +2,6 @@ const router = require("express").Router();
 const UsersDb = require("../users/userModel");
 const TrucksDb = require("../trucks/trucksModel");
 const bcrypt = require("bcrypt");
-const secrets = require("../secrets");
 const jwt = require("jsonwebtoken");
 
 router.get("/", async (req, res) => {
@@ -118,7 +117,7 @@ function makeToken(user) {
   const options = {
     expiresIn: "1h",
   };
-  return jwt.sign(payload, secrets.jwtSecrets, options);
+  return jwt.sign(payload, process.env.JWT_SECRET, options);
 }
 
 module.exports = router;

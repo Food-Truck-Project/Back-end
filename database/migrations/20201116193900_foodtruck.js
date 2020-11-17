@@ -1,13 +1,26 @@
 
 exports.up = async function(knex) {
      await knex.schema
+
+     .createTable('roles', tbl => {
+      tbl.increments();
+      tbl.string("name", 128).notNullable().unique();
+    })
       .createTable('users', tbl => {
       tbl.increments();
       tbl.string("username", 125).notNullable().unique();
       tbl.string("password", 255).notNullable().unique();
       tbl.string("email").notNullable().unique();
+      tbl.integer("role")
+      .unsigned()
+      .references("id")
+      .inTable("roles")
+      .onDelete("CASCADE")
+      .onUpdate("RESTRICT")
     })
- 
+     
+     
+      
      .createTable('trucks', tbl => {
         tbl.increments()
         tbl.integer("user_id")
