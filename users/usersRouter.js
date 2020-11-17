@@ -1,9 +1,9 @@
 const router = require("express").Router();
 const UsersDb = require("../users/userModel");
+const TrucksDb = require("../trucks/trucksModel");
 const bcrypt = require("bcrypt");
 const secrets = require("../secrets");
 const jwt = require("jsonwebtoken");
-const { findById } = require("../users/userModel");
 
 router.get("/", async (req, res) => {
     try {
@@ -14,6 +14,20 @@ router.get("/", async (req, res) => {
     }
 
 });
+
+router.get("/:id/trucks", async (req, res) => {
+  const trucks = await TrucksDb.findUserTrucks(req.params.id)
+try{
+  if(!trucks.length || !trucks){
+      res.status(404).json({message: "oops, no trucks found pls create one!"})
+  } else{
+      res.status(200).json(trucks)
+  }
+ } catch(err){
+  res.status(500).json({ message: "Something went wrong, pls contact the cool devs"})
+}
+
+})
 
 router.post("/register", async (req, res) => {
   try {
