@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
 
 });
 
-router.get("/:id/trucks", (req, res) => {
+router.get("/:id/trucks", async (req, res) => {
   const trucks = await TrucksDb.findUserTrucks(req.params.id)
 try{
   if(!trucks.length || !trucks){

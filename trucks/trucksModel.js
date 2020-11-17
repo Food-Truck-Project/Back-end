@@ -32,7 +32,7 @@ function findById(id) {
 function findUserTrucks(userId) {
    return db('trucks as t')
     .join('users as u', 't.user_id', 'u.id')
-    .select('t.truckName','t.truckImg', 't.cuisineType', 'u.username')
+    .select('t.id', 't.truckName','t.truckImg', 't.cuisineType', 'u.username')
     .where('t.user_id', userId)
 }
 

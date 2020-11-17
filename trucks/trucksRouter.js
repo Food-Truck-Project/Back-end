@@ -12,7 +12,7 @@ router.post("/", (req, res) => {
 })
 
 
-router.update("/", (req, res) => {
+router.put("/", (req, res) => {
 
 
 })
