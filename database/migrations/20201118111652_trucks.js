@@ -30,10 +30,10 @@ exports.up = async function(knex) {
        .onDelete("RESTRICT")
        .onUpdate("RESTRICT")
    })
-   .createTable('cuisine_types', tbl => {
-     tbl.increments();
-     tbl.string("cuisineType").notNullable()
-   })
+//    .createTable('cuisine_types', tbl => {
+//      tbl.increments();
+//      tbl.string("cuisineType")
+//    })
         
     .createTable('trucks', tbl => {
        tbl.increments()
@@ -45,13 +45,13 @@ exports.up = async function(knex) {
        .onUpdate("RESTRICT")
        tbl.string("truckName").notNullable()
        tbl.string("truckImg").notNullable()
-       tbl.integer("cuisineType_id")
-       .unsigned()
-       .references("id")
-       .inTable("cuisine_types")
-       .onDelete("CASCADE")
-       .onUpdate("RESTRICT")
        tbl.integer("customerRatingAvg")
+    //    tbl.integer("cuisineType_id")
+    //    .unsigned()
+    //    .references("id")
+    //    .inTable("cuisine_types")
+    //    .onUpdate("RESTRICT")
+    //    .onDelete("CASCADE")
        
      })
      .createTable('trucks_locations', tbl => {
@@ -133,7 +133,7 @@ exports.up = async function(knex) {
      .dropTableIfExists('customers_ratings')
      .dropTableIfExists('trucks_locations')
      .dropTableIfExists('trucks')
-     .dropTableIfExists('cuisine_types')
+    //  .dropTableIfExists('cuisine_types')
      .dropTableIfExists('customers_locations')
      .dropTableIfExists('users')
      .dropTableIfExists('roles')
