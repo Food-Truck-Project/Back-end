@@ -70,6 +70,7 @@ exports.up = async function(knex) {
        tbl.increments();
        tbl.integer("rating").unique();
      })
+     //ready
      .createTable('menu_items', tbl => {
        tbl.increments();
        tbl.string("itemName").notNullable().unique();
