@@ -10,12 +10,14 @@ module.exports = {
     remove,
 }
 
-
+// gives a list of all trucks
 function getAll() {
     return db('trucks as t')
     .select("t.id as truck_id", "t.truckName", "t.truckImg", "t.cuisineType")
     .orderBy("id")
 }
+
+//creates a truck with the folowing properties: imageoftruck, cuisinetype, customerRatings
 
 async function create(truck) {
     const [id] = await db('trucks').insert(truck)

@@ -76,6 +76,12 @@ exports.up = async function(knex) {
        tbl.string("itemDescription").notNullable();
        tbl.string("itemImg").notNullable();
        tbl.integer("itemPrice").defaultTo(0);
+       tbl.integer("truck_id")
+       .unsigned()
+       .references('id')
+       .inTable('trucks')
+       .onUpdate('RESTRICT')
+       .onDelete('CASCADE')
      })
      .createTable('menuItem_ratings', tbl => {
        tbl.increments();
