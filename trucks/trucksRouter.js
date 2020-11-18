@@ -14,7 +14,7 @@ router.get("/", restricted, async (req, res) => {
 })
 
 
-router.post("/", (req, res) => {
+router.post("/", restricted, (req, res) => {
 
 
 })

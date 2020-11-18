@@ -1,9 +1,9 @@
 const router = require("express").Router();
-const UsersDb = require("./userModel");
-const TrucksDb = require("../trucks/trucksModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
+const UsersDb = require("./userModel");
+const TrucksDb = require("../trucks/trucksModel");
 const restricted = require("./restrict-middleware");
 const role = require("../users/users-access");
 
