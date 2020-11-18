@@ -94,7 +94,8 @@ exports.up = async function(knex) {
   };
   
   exports.down = function(knex) {
-      return knex.schema.dropTableIfExists('trucks_ratings')
+      return knex.schema.dropTableIfExists('diner_favoriteTrucks')
+      .dropTableIfExists('trucks_ratings')
       .dropTableIfExists('menuItems_customerRatings')
       .dropTableIfExists('menu_items')
       .dropTableIfExists('customers_ratings')
