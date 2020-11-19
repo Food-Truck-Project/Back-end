@@ -22,10 +22,10 @@
 ```
 REQUIRED KEY/VALUES
 {
-  username: STRING
-  password: STRING
-  email: STRING
-  role: STRING
+ *username: STRING
+ *password: STRING
+ *email: STRING
+ *role: STRING
 }
 
 **/[POST] - endpoint for a creating a user's location in the database / **
@@ -34,9 +34,9 @@ REQUIRED KEY/VALUES
 ```
 **/ REQUIRED KEY/VALUES
 {
- latitude: float number i.e. -0.234
- longitude: float number
- physical_address: STRING - OPTIONAL
+ *latitude: float number i.e. -0.234
+ *longitude: float number
+ *physical_address: STRING - OPTIONAL
  }  /**
 
 
@@ -64,9 +64,9 @@ REQUIRED KEY/VALUES
 
 **/ REQUIRED KEY/VALUES
 {
-  truckName: STRING
-  truckImg: STRING
-  cuisineType: NUMBER IN A STRING -- SEE BELOW
+  *truckName: STRING
+  *truckImg: STRING
+  *cuisineType: NUMBER IN A STRING -- SEE BELOW
 }
   / **
 **REQUIREMENTS; AN OPERATOR MUST FILL OUT THE FOLLOWING PROPERTIES TO POST A TRUCK:  **
