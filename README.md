@@ -11,7 +11,7 @@
 
 **/[GET] endpoint for an operator's trucks in the database /**
 ```
-/api/users/:id/trucks
+/api/users/:user_id/trucks
 ```
 
 **REQUIREMENTS; A USER MUST BE LOGGED IN, AS WELL AS IT SHOULD BE AN OPERATOR **
