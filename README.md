@@ -98,7 +98,7 @@
 
   *truckName: STRING
   *truckImg: STRING
-  *cuisineType: NUMBER IN A STRING -- SEE BELOW
+  *cuisineType_id: NUMBER IN A STRING -- SEE BELOW
   
 }
 ```
@@ -130,17 +130,6 @@
 }
 ```
 
-**REQUIREMENTS; AN OPERATOR MUST FILL OUT THE FOLLOWING PROPERTIES TO POST A TRUCK:  **
-```
-**truckName
-**truckImg
-**cuisineType_id   --- This should be a radio button with an value of either option:
-**1-Asian
-**2-American
-**3-European
-**4-Australian
-```
-
  **/[PUT] endpoint updating an user's existing truck /**
 
 ```
@@ -152,9 +141,20 @@
 
   *truckName: STRING
   *truckImg: STRING
-  *cuisineType: NUMBER IN A STRING -- SEE BELOW
+  *cuisineType_id: NUMBER IN A STRING -- SEE BELOW
   
 }
+```
+
+**REQUIREMENTS; AN OPERATOR MUST FILL OUT THE FOLLOWING PROPERTIES TO PUT A TRUCK:  **
+```
+**truckName
+**truckImg
+**cuisineType_id   --- This should be a radio button with an value of either option:
+**1-Asian
+**2-American
+**3-European
+**4-Australian
 ```
 
 **NOTE; DO A GET REQUEST WITH THE TRUCK ID A USER WANTS TO UPDATE IN ORDER TO AUTOMATICALLY FILL OUT THE INPUTS WITH EXISTING TRUCK VALUES**
