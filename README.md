@@ -14,36 +14,39 @@
 /api/users/:user_id/trucks
 ```
 
-**REQUIREMENTS; A USER MUST BE LOGGED IN, AS WELL AS IT SHOULD BE AN OPERATOR **
+**/ REQUIREMENTS; A USER MUST BE LOGGED IN, AS WELL AS IT SHOULD BE AN OPERATOR /**
 
-**/[POST] - Register endpoint for a new user in the database / **
+**/[POST] - Register endpoint for a new user in the database/**
 ```
 /api/users/register
 ```
-REQUIRED KEY/VALUES
+**REQUIRED KEY/VALUES
+```
 {
-``
+
  *username: STRING
  *password: STRING
  *email: STRING
  *role: STRING
- ``
+ 
 }
+```
 
 **/[POST] - endpoint for a creating a user's location in the database / **
 ```
 /api/users/:user_id/currentlocation
 ```
 
-**/ REQUIRED KEY/VALUES **/
+**REQUIRED KEY/VALUES**
 
-**/ {
-/**
+```{
+
  **latitude: float number i.e. -0.234
  **longitude: float number
  **physical_address: STRING - OPTIONAL
- **/
- }  **/
+ 
+ }  
+ ```
 
 
 ---------------------------------------------------------------------------
@@ -54,7 +57,7 @@ REQUIRED KEY/VALUES
 ```
 /api/trucks
 ```
-**/[GET] endpoint for getting a single truck based on the truck_id in the database /**
+**[GET] endpoint for getting a single truck based on the truck_id in the database **
 
 ```
 /api/trucks/:truck_id
@@ -62,21 +65,23 @@ REQUIRED KEY/VALUES
 
 **REQUIREMENTS; A USER MUST BE LOGGED IN **
 
- **/[POST] endpoint for creating a truck for a user /**
+ **[POST] endpoint for creating a truck for a user /**
  
 ```
 /api/users/:user_id/trucks/
 ```
 
-**/ REQUIRED KEY/VALUES
+**REQUIRED KEY/VALUES
+```
 {
-``
+
   *truckName: STRING
   *truckImg: STRING
   *cuisineType: NUMBER IN A STRING -- SEE BELOW
-  ``
+  
 }
-  / **
+```
+
 **REQUIREMENTS; AN OPERATOR MUST FILL OUT THE FOLLOWING PROPERTIES TO POST A TRUCK:  **
 ```
 **truckName
