@@ -6,6 +6,7 @@ const UsersDb = require("./userModel");
 const TrucksDb = require("../trucks/trucksModel");
 const restricted = require("./restrict-middleware");
 const role = require("../users/users-access");
+const {roleChecker} = require("../users/users-access");
 
 
 router.post("/register", async (req, res) => {
