@@ -170,13 +170,27 @@
 ---------------------------------------------------------------------------
 ## MENU-ITEMS ENDPOINTS 🚎🚌:
 
- **/[GET] endpoint for all trucks menuitems in the database /**
 
-```
-/api/trucks/menuitems/:id
-```
 **/[GET] endpoint for getting a single truck based on the truck_id in the database /**
 
 ```
 /api/trucks/:truck_id/menuitems
+```
+
+**/[POST] endpoint for creating a truck's menu item in the database /**
+
+```
+/api/trucks/:truck_id/menuitems
+```
+
+**REQUIRED KEY/VALUES
+```
+{
+
+  *itemName: STRING
+  *itemDescription: STRING
+  *itemImg: STRING
+  *itemPrice: STRING
+  
+}
 ```
