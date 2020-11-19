@@ -7,9 +7,8 @@ const TrucksDb = require("../trucks/trucksModel");
 const restricted = require("./restrict-middleware");
 const role = require("../users/users-access");
 
-
 router.post("/register", async (req, res) => {
-  const { username, password, email, role} = req.body;
+  const { username, password, email, role } = req.body;
   try {
     if (!username || !password || !email || !role) {
       res
@@ -28,14 +27,14 @@ router.post("/register", async (req, res) => {
       }
 
       const hash = bcrypt.hashSync(req.body.password, 14);
-      const parsedRole = await parseInt(req.body.role)
+      const parsedRole = await parseInt(req.body.role);
       const newUser = {
         username: req.body.username,
         password: hash,
         email: req.body.email,
-        role: parsedRole
+        role: parsedRole,
       };
-      
+
       const addedUser = await UsersDb.create(newUser);
       res.status(201).json(addedUser);
     }
@@ -56,7 +55,11 @@ router.post("/login", async (req, res) => {
       const token = makeToken(user);
       res
         .status(200)
-        .json({ message: `Welcome ${user.username}!, have a token...`, token, user_id: user.user_id });
+        .json({
+          message: `Welcome ${user.username}!, have a token...`,
+          token,
+          user_id: user.user_id,
+        });
     } else {
       res.status(401).json({ message: "Invalid Credentials" });
     }
@@ -65,79 +68,97 @@ router.post("/login", async (req, res) => {
   }
 });
 // create a new truck for a user
-router.post("/:user_id/trucks/" , async (req, res) => {
-  const { truckName, truckImg, cuisineType_id} = req.body;
+router.post("/:user_id/trucks", async (req, res) => {
+  const { truckName, truckImg, cuisineType_id } = req.body;
 
-
-  try{
-    if(!truckName || !truckImg || cuisineType_id) {
-      res.status(400).json({ message: "Make sure you have truckName, truckImg, and cuisineType, selected and filled."})
+  try {
+    if (!truckName || !truckImg || cuisineType_id) {
+      res
+        .status(400)
+        .json({
+          message:
+            "Make sure you have truckName, truckImg, and cuisineType, selected and filled.",
+        });
     }
- 
-   const newTruck = {
-       user_id: req.params.user_id,
-       truckName: truckName,
-       truckImg: truckImg,
-       cuisineType_id: parseInt(cuisineType_id)
-   }
-      const [truck] = await TrucksDb.create(newTruck)
-      if(truck){
-       res.status(200).json(truck)
-      } else {
-          res.status(400).json({message: "oops truck not created!"})
-      }
-        } catch(error){
-            console.log(error.message)
-            res.status(500).json({message: "Something went wrong retrieving menu items pls contact dev"})
-        }
-})
 
-// update a truck's properties 
-
-router.put("/:user_id/trucks/:truck_id" , async (req, res) => {
-  const { truckName, truckImg, cuisineType_id} = req.body;
-    
-
-  try{
-    if(!truckName || !truckImg || cuisineType_id) {
-      res.status(400).json({ message: "Make sure you have truckName, truckImg, and cuisineType, selected and filled."})
+    const newTruck = {
+      user_id: req.params.user_id,
+      truckName: truckName,
+      truckImg: truckImg,
+      cuisineType_id: parseInt(cuisineType_id),
+    };
+    const [truck] = await TrucksDb.create(newTruck);
+    if (truck) {
+      res.status(200).json(truck);
+    } else {
+      res.status(400).json({ message: "oops truck not created!" });
     }
- 
-   const updatedTruck = {
-       user_id: req.params.user_id,
-       truckName: truckName,
-       truckImg: truckImg,
-       cuisineType_id: parseInt(cuisineType_id)
-   }
-      const truck = await TrucksDb.update(req.params.truck_id, updatedTruck)
-      if(truck){
-       res.status(200).json(truck)
-      } else {
-          res.status(400).json({message: "oops truck not created!"})
-      }
-        } catch(error){
-            console.log(error.message)
-            res.status(500).json({message: "Something went wrong retrieving menu items pls contact dev"})
-        }
-})
+  } catch (error) {
+    console.log(error.message);
+    res
+      .status(500)
+      .json({
+        message: "Something went wrong retrieving menu items pls contact dev",
+      });
+  }
+});
+
+// update a truck's properties
+
+router.put("/:user_id/trucks/:truck_id", async (req, res) => {
+  const { truckName, truckImg, cuisineType_id } = req.body;
+
+  try {
+    if (!truckName || !truckImg || cuisineType_id) {
+      res
+        .status(400)
+        .json({
+          message:
+            "Make sure you have truckName, truckImg, and cuisineType, selected and filled.",
+        });
+    }
+
+    const updatedTruck = {
+      user_id: req.params.user_id,
+      truckName: truckName,
+      truckImg: truckImg,
+      cuisineType_id: parseInt(cuisineType_id),
+    };
+    const truck = await TrucksDb.update(req.params.truck_id, updatedTruck);
+    if (truck) {
+      res.status(200).json(truck);
+    } else {
+      res.status(400).json({ message: "oops truck not created!" });
+    }
+  } catch (error) {
+    console.log(error.message);
+    res
+      .status(500)
+      .json({
+        message: "Something went wrong retrieving menu items pls contact dev",
+      });
+  }
+});
 
 // delete a truck based on the user_id and truck id
-router.delete("/:user_id/trucks/:truck_id" , async (req, res) => {
-    
-    const truck = await TrucksDb.findUserTrucks(req.params.user_id)
-  try{
-    if(!truck || !truck.length) {
-      res.status(400).json({ message: "Oops truck not found!"})
+router.delete("/:user_id/trucks/:truck_id", async (req, res) => {
+  const truck = await TrucksDb.findUserTrucks(req.params.user_id);
+  try {
+    if (!truck || !truck.length) {
+      res.status(400).json({ message: "Oops truck not found!" });
     }
-    
-       await TrucksDb.remove(req.params.truck_id)
-       res.status(204).json({message: "Truck is now deleted!"})
-    
-        } catch(error){
-            console.log(error.message)
-            res.status(500).json({message: "Something went wrong retrieving menu items pls contact dev"})
-        }
-})
+
+    await TrucksDb.remove(req.params.truck_id);
+    res.status(204).json({ message: "Truck is now deleted!" });
+  } catch (error) {
+    console.log(error.message);
+    res
+      .status(500)
+      .json({
+        message: "Something went wrong retrieving menu items pls contact dev",
+      });
+  }
+});
 
 router.get("/", async (req, res) => {
   try {
@@ -149,7 +170,7 @@ router.get("/", async (req, res) => {
 });
 
 // find the trucks that an operator own with roleChecker (2) which is operator
-router.get("/:id/trucks", restricted, roleChecker(2), async (req, res) => {
+router.get("/:id/trucks", restricted, role.roleChecker(2), async (req, res) => {
   const trucks = await TrucksDb.findUserTrucks(req.params.id);
   try {
     if (!trucks.length || !trucks) {
@@ -170,7 +191,7 @@ function makeToken(user) {
   const payload = {
     subject: user.id,
     username: user.username,
-    role: user.role
+    role: user.role,
   };
 
   const options = {
