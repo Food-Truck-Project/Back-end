@@ -46,13 +46,12 @@ exports.up = async function(knex) {
        tbl.string("truckName").notNullable()
        tbl.string("truckImg").notNullable()
        tbl.integer("customerRatingAvg")
-      tbl.string("cuisineType")
-    //    tbl.integer("cuisineType")
-    //    .unsigned()
-    //    .references("id")
-    //    .inTable("cuisine_types")
-    //    .onUpdate("RESTRICT")
-    //    .onDelete("CASCADE")
+       tbl.integer("cuisineType_id")
+       .unsigned()
+       .references("id")
+       .inTable("cuisine_types")
+       .onUpdate("RESTRICT")
+       .onDelete("CASCADE")
        
      })
      .createTable('trucks_locations', tbl => {
@@ -71,12 +70,19 @@ exports.up = async function(knex) {
        tbl.increments();
        tbl.integer("rating").unique();
      })
+     //ready
      .createTable('menu_items', tbl => {
        tbl.increments();
        tbl.string("itemName").notNullable().unique();
        tbl.string("itemDescription").notNullable();
        tbl.string("itemImg").notNullable();
        tbl.integer("itemPrice").defaultTo(0);
+       tbl.integer("truck_id")
+       .unsigned()
+       .references('id')
+       .inTable('trucks')
+       .onUpdate('RESTRICT')
+       .onDelete('CASCADE')
      })
      .createTable('menuItem_ratings', tbl => {
        tbl.increments();
@@ -129,7 +135,7 @@ exports.up = async function(knex) {
  exports.down = function(knex) {
      return knex.schema.dropTableIfExists('diner_favoriteTrucks')
      .dropTableIfExists('trucks_ratings')
-     .dropTableIfExists('menuItems_customerRatings')
+     .dropTableIfExists('menuItem_ratings')
      
      .dropTableIfExists('customers_ratings')
      .dropTableIfExists('trucks_locations')

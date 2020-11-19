@@ -8,7 +8,7 @@ exports.seed = function(knex) {
         {id: 1, rating: 4},
         {id: 2, rating: 5},
         {id: 3, rating: 2},
-        {id: 4, rating: 3},
+        {id: 4, rating: 3},  //truck 4 rating
         {id: 5, rating: 1}
       ]);
     });
