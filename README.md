@@ -32,12 +32,12 @@ REQUIRED KEY/VALUES
 ```
 /api/users/:user_id/currentlocation
 ```
-REQUIRED KEY/VALUES
+**/ REQUIRED KEY/VALUES
 {
  latitude: float number i.e. -0.234
  longitude: float number
  physical_address: STRING - OPTIONAL
- }
+ }  /**
 
 
 ---------------------------------------------------------------------------
@@ -62,13 +62,13 @@ REQUIRED KEY/VALUES
 /api/users/:user_id/trucks/
 ```
 
-**REQUIRED KEY/VALUES
+**/ REQUIRED KEY/VALUES
 {
   truckName: STRING
   truckImg: STRING
   cuisineType: NUMBER IN A STRING -- SEE BELOW
 }
-**
+  / **
 **REQUIREMENTS; AN OPERATOR MUST FILL OUT THE FOLLOWING PROPERTIES TO POST A TRUCK:  **
 ```
 **truckName
