@@ -12,12 +12,6 @@ exports.up = async function(knex) {
        tbl.float('latitude').defaultTo(0.0)
        tbl.float('longitude').defaultTo(0.0)
        tbl.string('physical_address').defaultTo("Not specified")
-       tbl.integer("user_id")
-       .unsigned()
-       .references("id")
-       .inTable("users")
-       .onDelete("RESTRICT")
-       .onUpdate("RESTRICT")
    })
 
    .createTable('users', tbl => {
