@@ -46,7 +46,7 @@
 ```
 **truckName
 **truckImg
-**cuisineType_id   --- This should be a radio button with an entry of either option:
+**cuisineType_id   --- This should be a radio button with an value of either option:
 **1-Asian
 **2-American
 **3-European
