@@ -6,18 +6,7 @@ exports.up = async function(knex) {
      tbl.increments();
      tbl.string("name", 128).notNullable()
    })
-     .createTable('users', tbl => {
-     tbl.increments();
-     tbl.string("username", 125).notNullable().unique();
-     tbl.string("password", 255).notNullable().unique();
-     tbl.string("email").notNullable().unique();
-     tbl.integer("role")
-     .references("id")
-     .inTable("roles")
-     .onDelete("RESTRICT")
-     .onUpdate("RESTRICT")
-     
-   })
+    
    .createTable('customers_locations', tbl => {
        tbl.increments();
        tbl.float('latitude').defaultTo(0.0)
@@ -30,6 +19,26 @@ exports.up = async function(knex) {
        .onDelete("RESTRICT")
        .onUpdate("RESTRICT")
    })
+
+   .createTable('users', tbl => {
+    tbl.increments();
+    tbl.string("username", 125).notNullable().unique();
+    tbl.string("password", 255).notNullable().unique();
+    tbl.string("email").notNullable().unique();
+    tbl.integer("role").unsigned()
+    .references("id")
+    .inTable("roles")
+    .onDelete("RESTRICT")
+    .onUpdate("RESTRICT")
+
+    tbl.integer("location_id")
+    .references("id")
+    .inTable("customers_locations")
+    .onDelete("RESTRICT")
+    .onUpdate("RESTRICT")
+    
+  })
+
    .createTable('cuisine_types', tbl => {
      tbl.increments();
      tbl.string("cuisineType")
@@ -54,18 +63,18 @@ exports.up = async function(knex) {
        .onDelete("CASCADE")
        
      })
+     
      .createTable('trucks_locations', tbl => {
-       tbl.increments()
-       tbl.string("locations").notNullable()
-       tbl.dateTime("departureTime").notNullable()
-       tbl.integer("truck_id")
-       .unsigned()
-       .references("id")
-       .inTable("trucks")
-       .onDelete("CASCADE")      
-       .onUpdate("RESTRICT") 
-     })
-    
+      tbl.increments()
+      tbl.varchar("location").notNullable()
+      tbl.dateTime("departureTime").notNullable()
+      tbl.integer("truck_id")
+      .unsigned()
+      .references("id")
+      .inTable("trucks")
+      .onDelete("CASCADE")      
+      .onUpdate("RESTRICT") 
+    })
      .createTable('customers_ratings', tbl => {
        tbl.increments();
        tbl.integer("rating").unique();
@@ -136,13 +145,13 @@ exports.up = async function(knex) {
      return knex.schema.dropTableIfExists('diner_favoriteTrucks')
      .dropTableIfExists('trucks_ratings')
      .dropTableIfExists('menuItem_ratings')
-     
+     .dropTableIfExists('menuItems')
      .dropTableIfExists('customers_ratings')
      .dropTableIfExists('trucks_locations')
      .dropTableIfExists('trucks')
      .dropTableIfExists('cuisine_types')
-     .dropTableIfExists('customers_locations')
      .dropTableIfExists('users')
+     .dropTableIfExists('customers_locations')
      .dropTableIfExists('roles')
  };
  

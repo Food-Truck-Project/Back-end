@@ -44,6 +44,12 @@ function getTruckMenuItems(truck_id){
 }
 //creates a truck with the folowing properties: imageoftruck, cuisinetype, customerRatings
 
+function getTruckLocation(truck_id){
+    return db('trucks as t')
+    .join('menu_items as m_i', 't.id', 'm_i.truck_id')
+    .select("t.truckName", "m_i.itemName", "m_i.itemDescription", "m_i.itemImg")
+    .where({'t.id': truck_id})
+}
 async function create(truck) {
     const [id] = await db('trucks').insert(truck)
     return db("trucks as t")
