@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const TrucksDb = require("./trucksModel");
 const restricted = require("../auth/restrict-middleware");
+const { roleChecker } = require("../users/users-access");
 
 // get all trucks in general
 router.get("/", restricted, async (req, res) => {
@@ -14,9 +15,9 @@ router.get("/", restricted, async (req, res) => {
    
 })
 // get a single truck based on the truck id
-router.get("/:id", async (req, res) => {
+router.get("/:truck_id", async (req, res) => {
     try{
-   const [truck] = await TrucksDb.getSingleTruck(req.params.id)
+   const [truck] = await TrucksDb.getSingleTruck(req.params.truck_id)
     res.status(200).json(truck)
      } catch(error){
          console.log(error.message)
@@ -27,9 +28,9 @@ router.get("/:id", async (req, res) => {
 
  //Get a trucks's menuItems
 
- router.get("/menuitems/:id",  async (req, res) => {
+ router.get("/:truck_id/menuitems/", restricted, async (req, res) => {
     try{
-   const [truck] = await TrucksDb.getTruckMenuItems(req.params.id)
+   const [truck] = await TrucksDb.getTruckMenuItems(req.params.truck_id)
    if(truck){
     res.status(200).json(truck)
    } else {
