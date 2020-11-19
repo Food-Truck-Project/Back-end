@@ -135,7 +135,7 @@ exports.up = async function(knex) {
  exports.down = function(knex) {
      return knex.schema.dropTableIfExists('diner_favoriteTrucks')
      .dropTableIfExists('trucks_ratings')
-     .dropTableIfExists('menuItems_customerRatings')
+     .dropTableIfExists('menuItem_ratings')
      
      .dropTableIfExists('customers_ratings')
      .dropTableIfExists('trucks_locations')

@@ -56,7 +56,7 @@ router.post("/login", async (req, res) => {
       const token = makeToken(user);
       res
         .status(200)
-        .json({ message: `Welcome ${user.username}!, have a token...`, token });
+        .json({ message: `Welcome ${user.username}!, have a token...`, token, user_id: user.user_id });
     } else {
       res.status(401).json({ message: "Invalid Credentials" });
     }
@@ -64,6 +64,77 @@ router.post("/login", async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
+// create a new truck for a user
+router.post("/:user_id/trucks/" , async (req, res) => {
+  const { truckName, truckImg, cuisineType_id} = req.body;
+
+
+  try{
+    if(!truckName || !truckImg || cuisineType_id) {
+      res.status(400).json({ message: "Make sure you have truckName, truckImg, and cuisineType, selected and filled."})
+    }
+ 
+   const newTruck = {
+       user_id: req.params.user_id,
+       truckName: truckName,
+       truckImg: truckImg,
+       cuisineType_id: cuisineType_id
+   }
+      const [truck] = await TrucksDb.create(newTruck)
+      if(truck){
+       res.status(200).json(truck)
+      } else {
+          res.status(400).json({message: "oops truck not created!"})
+      }
+        } catch(error){
+            console.log(error.message)
+            res.status(500).json({message: "Something went wrong retrieving menu items pls contact dev"})
+        }
+})
+
+router.put("/:user_id/trucks/:truck_id" , async (req, res) => {
+  const { truckName, truckImg, cuisineType_id} = req.body;
+    
+
+  try{
+    if(!truckName || !truckImg || cuisineType_id) {
+      res.status(400).json({ message: "Make sure you have truckName, truckImg, and cuisineType, selected and filled."})
+    }
+ 
+   const updatedTruck = {
+       user_id: req.params.user_id,
+       truckName: truckName,
+       truckImg: truckImg,
+       cuisineType_id: cuisineType_id
+   }
+      const truck = await TrucksDb.update(req.params.truck_id, updatedTruck)
+      if(truck){
+       res.status(200).json(truck)
+      } else {
+          res.status(400).json({message: "oops truck not created!"})
+      }
+        } catch(error){
+            console.log(error.message)
+            res.status(500).json({message: "Something went wrong retrieving menu items pls contact dev"})
+        }
+})
+
+router.delete("/:user_id/trucks/:truck_id" , async (req, res) => {
+    
+    const truck = await TrucksDb.findUserTrucks(req.params.user_id)
+  try{
+    if(!truck || !truck.length) {
+      res.status(400).json({ message: "Oops truck not found!"})
+    }
+    
+       await TrucksDb.remove(req.params.truck_id)
+       res.status(204).json({message: "Truck is now deleted!"})
+    
+        } catch(error){
+            console.log(error.message)
+            res.status(500).json({message: "Something went wrong retrieving menu items pls contact dev"})
+        }
+})
 
 router.get("/", async (req, res) => {
   try {
@@ -75,7 +146,7 @@ router.get("/", async (req, res) => {
 });
 
 // find the trucks that an operator own with roleChecker (2) which is operator
-router.get("/:id/trucks", restricted, role.roleChecker(2), async (req, res) => {
+router.get("/:id/trucks", restricted,  async (req, res) => {
   const trucks = await TrucksDb.findUserTrucks(req.params.id);
   try {
     if (!trucks.length || !trucks) {

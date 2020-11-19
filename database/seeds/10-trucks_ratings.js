@@ -8,7 +8,9 @@ exports.seed = function(knex) {
         {truck_id: 1, customers_rating_id: 1},
         {truck_id: 1, customers_rating_id: 2},
         {truck_id: 2, customers_rating_id: 3},
-        {truck_id: 2, customers_rating_id: 3},
+        {truck_id: 3, customers_rating_id: 2},
+        {truck_id: 4, customers_rating_id: 4},
+        {truck_id: 5, customers_rating_id: 3},
       ]);
     });
 };
