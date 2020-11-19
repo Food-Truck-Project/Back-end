@@ -20,6 +20,26 @@
 ```
 /api/users/register
 ```
+REQUIRED KEY/VALUES
+{
+  username: STRING
+  password: STRING
+  email: STRING
+  role: STRING
+}
+
+**/[POST] - endpoint for a creating a user's location in the database / **
+```
+/api/users/:user_id/currentlocation
+```
+REQUIRED KEY/VALUES
+{
+ latitude: float number i.e. -0.234
+ longitude: float number
+ physical_address: STRING - OPTIONAL
+ }
+
+
 ---------------------------------------------------------------------------
 ## TRUCKS ENDPOINTS 🚎🚌:
 
@@ -36,12 +56,19 @@
 
 **REQUIREMENTS; A USER MUST BE LOGGED IN **
 
- **/[POST] endpoint for a truck in the database /**
+ **/[POST] endpoint for creating a truck for a user /**
  
 ```
 /api/users/:user_id/trucks/
 ```
 
+**REQUIRED KEY/VALUES
+{
+  truckName: STRING
+  truckImg: STRING
+  cuisineType: NUMBER IN A STRING -- SEE BELOW
+}
+**
 **REQUIREMENTS; AN OPERATOR MUST FILL OUT THE FOLLOWING PROPERTIES TO POST A TRUCK:  **
 ```
 **truckName
