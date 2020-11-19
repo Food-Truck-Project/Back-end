@@ -10,8 +10,8 @@ const dotenv = require('dotenv').config()
 const app = express();
 
 app.use(express.json());
-app.use(cors());
 app.use(helmet());
+app.use(cors());
 
 app.use("/api/users", authRouter);
 app.use("/api/trucks", trucksRouter);
