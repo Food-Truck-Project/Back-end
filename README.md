@@ -32,6 +32,21 @@
 }
 ```
 
+**/[POST] - Login endpoint for a new user in the database/**
+```
+/api/users/login
+```
+**REQUIRED KEY/VALUES
+```
+{
+
+ *username: STRING
+ *password: STRING
+ 
+ }
+ ```
+ *password: STRING
+
 **/[POST] - endpoint for a creating a user's location in the database / **
 ```
 /api/users/:user_id/currentlocation
@@ -63,7 +78,13 @@
 /api/trucks/:truck_id
 ```
 
+**[GET] endpoint for getting a a truck location based on the truck_id **
+
+```
+/api/trucks/:truck_id/location
+```
 **REQUIREMENTS; A USER MUST BE LOGGED IN **
+
 
  **[POST] endpoint for creating a truck for a user /**
  
@@ -93,16 +114,53 @@
 **4-Australian
 ```
 
- **/[PUT] endpoint updating an operator's existing truck /**
+ **[POST] endpoint for creating a location for a truck /**
+ 
+```
+/api/trucks/:truck_id/location/
+```
+
+**REQUIRED KEY/VALUES
+```
+{
+
+  *location: STRING
+  *departureTime: STRING
+  
+}
+```
+
+**REQUIREMENTS; AN OPERATOR MUST FILL OUT THE FOLLOWING PROPERTIES TO POST A TRUCK:  **
+```
+**truckName
+**truckImg
+**cuisineType_id   --- This should be a radio button with an value of either option:
+**1-Asian
+**2-American
+**3-European
+**4-Australian
+```
+
+ **/[PUT] endpoint updating an user's existing truck /**
 
 ```
 /api/users/:user_id/trucks/:truck_id
+```
+**REQUIRED KEY/VALUES
+```
+{
+
+  *truckName: STRING
+  *truckImg: STRING
+  *cuisineType: NUMBER IN A STRING -- SEE BELOW
+  
+}
 ```
 
 **NOTE; DO A GET REQUEST WITH THE TRUCK ID A USER WANTS TO UPDATE IN ORDER TO AUTOMATICALLY FILL OUT THE INPUTS WITH EXISTING TRUCK VALUES**
 
 
- **/[DELETE] endpoint for a truck in the database /**
+ **/[DELETE] endpoint for a user's truck in the database /**
 
 ```
 /api/users/:user_id/trucks/:truck_id
