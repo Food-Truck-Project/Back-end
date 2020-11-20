@@ -58,7 +58,7 @@ router.post("/login", async (req, res) => {
         .json({
           message: `Welcome ${user.username}!, have a token...`,
           token,
-          user_id: user.user_id,
+          user_id: user.id,
         });
     } else {
       res.status(401).json({ message: "Invalid Credentials" });
@@ -67,8 +67,9 @@ router.post("/login", async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
-// create a new truck for a user
-router.post("/:user_id/trucks", async (req, res) => {
+
+// create a new truck for an operator user
+router.post("/:user_id/trucks", role.roleChecker(2), async (req, res) => {
   const { truckName, truckImg, cuisineType_id } = req.body;
 
   try {
@@ -87,11 +88,49 @@ router.post("/:user_id/trucks", async (req, res) => {
       truckImg: truckImg,
       cuisineType_id: parseInt(cuisineType_id),
     };
+
     const [truck] = await TrucksDb.create(newTruck);
     if (truck) {
       res.status(200).json(truck);
     } else {
       res.status(400).json({ message: "oops truck not created!" });
+    }
+  } catch (error) {
+    console.log(error.message);
+    res
+      .status(500)
+      .json({
+        message: "Something went wrong retrieving menu items pls contact dev",
+      });
+  }
+});
+
+// CREATE A USER'S CURRENT LOCATION
+router.post("/:user_id/currentlocation", async (req, res) => {
+  const { latitude, longitude, physical_address } = req.body;
+   
+  try {
+    if (!latitude || !longitude) {
+      res
+        .status(400)
+        .json({
+          message:
+            "Make sure you have latitude, longitude, filled.",
+        });
+    }
+
+    const newLocation = {
+      latitude: latitude,
+      longitude: longitude,
+      physical_address: physical_address,
+      user_id: req.params.user_id,
+    };
+
+    const [truck] = await UsersDb.createUserLocation(newLocation)
+    if (truck) {
+      res.status(200).json(truck);
+    } else {
+      res.status(400).json({ message: "oops location not created!" });
     }
   } catch (error) {
     console.log(error.message);
@@ -160,16 +199,8 @@ router.delete("/:user_id/trucks/:truck_id", async (req, res) => {
   }
 });
 
-router.get("/", async (req, res) => {
-  try {
-    const users = await UsersDb.getAll();
-    res.status(200).json(users);
-  } catch (err) {
-    res.status(500).json({ errorMessage: "something went wrong!" });
-  }
-});
 
-// find the trucks that an operator own with roleChecker (2) which is operator
+// find the trucks that an operator owns with roleChecker (2) which is operator
 router.get("/:id/trucks", restricted, role.roleChecker(2), async (req, res) => {
   const trucks = await TrucksDb.findUserTrucks(req.params.id);
   try {
@@ -187,6 +218,22 @@ router.get("/:id/trucks", restricted, role.roleChecker(2), async (req, res) => {
   }
 });
 
+router.get("/:user_id/currentlocation", restricted, async (req, res) => {
+  const location = await UsersDb.getUserLocation(req.params.user_id)
+  try {
+    if (!location.length || !location) {
+      res
+        .status(404)
+        .json({ message: "oops, no location found pls create one!" });
+    } else {
+      res.status(200).json(location);
+    }
+  } catch (err) {
+    res
+      .status(500)
+      .json({ message: "Something went wrong, pls contact the cool devs" });
+  }
+});
 function makeToken(user) {
   const payload = {
     subject: user.id,
