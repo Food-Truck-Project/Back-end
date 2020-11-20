@@ -3,7 +3,9 @@ const db = require("../database/dbConfig");
 
 module.exports = {
     getAll,
+    getUserLocation,
     create,
+    createUserLocation,
     findById,
     findBy,
     update,
@@ -15,12 +17,23 @@ function getAll() {
     return db('users').select("id", "username", "email")
 }
 
+function getUserLocation(user_id) {
+    return db('customers_locations').where("user_id",user_id)
+}
+
 async function create(user) {
  const [id] = await db('users').insert(user, 'id')
     return db('users')
     .where({ id })
-    .first()
 }
+
+async function createUserLocation(userLocation) {
+    const [id] = await db('customers_locations').insert(userLocation, 'id')
+    return db("customers_locations")
+    .where({ id })
+   
+}
+
 
 function findById (id) {
     return db('users').where({ id }).first()

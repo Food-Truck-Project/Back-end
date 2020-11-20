@@ -1,9 +1,10 @@
 const express = require('express');
 const helmet = require("helmet")
 const cors = require("cors");
+
 const authRouter = require('../auth/authRouter');
 const trucksRouter = require('../trucks/trucksRouter');
-const dotenv = require('dotenv').config()
+// const dotenv = require('dotenv').config()
 
 
 
@@ -17,7 +18,8 @@ app.use("/api/users", authRouter);
 app.use("/api/trucks", trucksRouter);
 
 app.get("/", (req,res) => {
-    res.send(`api is up and running :+1:`)
+    res.status(200).json({ api: "up" });
+    
 })
 
 module.exports = app
