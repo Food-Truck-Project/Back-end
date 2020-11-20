@@ -23,18 +23,18 @@ exports.up = async function(knex) {
   })
 
 
-  .createTable('customers_locations', tbl => {
-    tbl.increments();
-    tbl.float('latitude').defaultTo(0.0)
-    tbl.float('longitude').defaultTo(0.0)
-    tbl.string('physical_address').defaultTo("Not specified")
-    tbl.integer("user_id").unsigned()
-    .references("id")
-    .inTable("users")
-    .onDelete("RESTRICT")
-    .onUpdate("RESTRICT")
+//   .createTable('customers_locations', tbl => {
+//     tbl.increments();
+//     tbl.float('latitude').defaultTo(0.0)
+//     tbl.float('longitude').defaultTo(0.0)
+//     tbl.string('physical_address').defaultTo("Not specified")
+//     tbl.integer("user_id").unsigned()
+//     .references("id")
+//     .inTable("users")
+//     .onDelete("RESTRICT")
+//     .onUpdate("RESTRICT")
     
-})
+// })
    .createTable('cuisine_types', tbl => {
      tbl.increments();
      tbl.string("cuisineType")
