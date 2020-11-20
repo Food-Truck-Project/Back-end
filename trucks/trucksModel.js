@@ -26,7 +26,6 @@ async function getAll() {
     .join('cuisine_types as ct', 'ct.id', 't.cuisineType_id')
     .select("t.id as truck_id", "t.truckName", "t.truckImg", "ct.cuisineType")
     .select(ratingAvg )
-    .orderBy("t.id")
 
 }
 

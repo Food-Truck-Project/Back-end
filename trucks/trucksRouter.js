@@ -17,7 +17,7 @@ router.get("/", restricted, async (req, res) => {
 // get a single truck based on the truck id
 router.get("/:truck_id", restricted, async (req, res) => {
     try{
-   const [truck] = await TrucksDb.getSingleTruck(req.params.truck_id)
+   const truck = await TrucksDb.getSingleTruck(req.params.truck_id)
     res.status(200).json(truck)
      } catch(error){
          console.log(error.message)

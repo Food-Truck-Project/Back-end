@@ -4,7 +4,7 @@ const cors = require("cors");
 
 const authRouter = require('../auth/authRouter');
 const trucksRouter = require('../trucks/trucksRouter');
-// const dotenv = require('dotenv').config()
+const dotenv = require('dotenv').config()
 
 
 

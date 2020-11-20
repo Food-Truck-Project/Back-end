@@ -25,7 +25,6 @@ async function create(user) {
  const [id] = await db('users').insert(user, 'id')
     return db('users')
     .where({ id })
-    .first()
 }
 
 async function createUserLocation(userLocation) {
