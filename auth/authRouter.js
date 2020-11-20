@@ -201,8 +201,8 @@ router.delete("/:user_id/trucks/:truck_id", async (req, res) => {
 
 
 // find the trucks that an operator owns with roleChecker (2) which is operator
-router.get("/:id/trucks", restricted, role.roleChecker(2), async (req, res) => {
-  const trucks = await TrucksDb.findUserTrucks(req.params.id);
+router.get("/:user_id/trucks", restricted, role.roleChecker(2), async (req, res) => {
+  const trucks = await TrucksDb.findUserTrucks(req.params.user_id);
   try {
     if (!trucks.length || !trucks) {
       res

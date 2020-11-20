@@ -18,7 +18,8 @@ app.use("/api/users", authRouter);
 app.use("/api/trucks", trucksRouter);
 
 app.get("/", (req,res) => {
-    res.send(`api is up and running :+1:`)
+    res.status(200).json({ api: "up" });
+    
 })
 
 module.exports = app

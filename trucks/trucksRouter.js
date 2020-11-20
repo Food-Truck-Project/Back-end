@@ -1,17 +1,16 @@
 const router = require("express").Router();
 const TrucksDb = require("./trucksModel");
 const restricted = require("../auth/restrict-middleware");
-const { roleChecker } = require("../users/users-access");
 
 // get all trucks in general
 router.get("/", restricted, async (req, res) => {
-   try{
+//    try{
    const trucks = await TrucksDb.getAll()
    res.status(200).json({data: trucks})
-    } catch(error){
-        console.log(error.message)
-        res.status(500).json({message: "Something went wrong retrieving trucks pls contact dev"})
-    }
+    // } catch(error){
+        // console.log(error.message)
+        // res.status(500).json({message: "Something went wrong retrieving trucks pls contact dev"})
+    // }
    
 })
 // get a single truck based on the truck id
@@ -20,7 +19,7 @@ router.get("/:truck_id", restricted, async (req, res) => {
    const truck = await TrucksDb.getSingleTruck(req.params.truck_id)
     res.status(200).json(truck)
      } catch(error){
-         console.log(error.message)
+        //  console.log(error.message)
          res.status(500).json({message: "Something went wrong retrieving trucks pls contact dev"})
      }
     
