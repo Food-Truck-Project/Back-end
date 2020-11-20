@@ -19,13 +19,12 @@ module.exports = {
 
 // gives a list of all trucks
 async function getAll() {
-  const ratingAvg = await db("trucks_ratings as t_r")
-    .join("customers_ratings as c_r", "c_r.id", "t_r.customers_rating_id")
-    .select(db.raw('ROUND(AVG(c_r.rating),3) AS customersRatingAvg'))
+//   const ratingAvg = await db("trucks_ratings as t_r")
+//     .join("customers_ratings as c_r", "c_r.id", "t_r.customers_rating_id")
+//     .select(db.raw('ROUND(AVG(c_r.rating),3) AS customersRatingAvg'))
     return db('trucks as t')
     .join('cuisine_types as ct', 'ct.id', 't.cuisineType_id')
     .select("t.id as truck_id", "t.truckName", "t.truckImg", "ct.cuisineType")
-    .select(ratingAvg )
 
 }
 
