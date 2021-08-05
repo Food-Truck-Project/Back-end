@@ -13,7 +13,7 @@ USERS ENDPOINTS 👤:
 /[POST] - Register endpoint for a new user in the database/
 
 /api/users/register
-**REQUIRED KEY/VALUES
+**REQUIRED KEY/VALUES**
 
 {
 
@@ -26,7 +26,7 @@ USERS ENDPOINTS 👤:
 /[POST] - Login endpoint for a new user in the database/
 
 /api/users/login
-**REQUIRED KEY/VALUES
+**REQUIRED KEY/VALUES**
 
 {
 
