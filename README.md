@@ -1,6 +1,6 @@
 #Back-end
 
-##USERS ENDPOINTS 👤:
+## USERS ENDPOINTS 👤:
 ----------------------------------------------------------------
 **/[GET] endpoint for all users in the database /**
 ```
@@ -19,7 +19,7 @@
 /api/users/register
 ```
 
-**REQUIRED KEY/VALUES
+**REQUIRED KEY/VALUES FOR POST**
 ```
 {
 
@@ -36,7 +36,7 @@
 ```
 
 
-**REQUIRED KEY/VALUES
+**REQUIRED KEY/VALUES FOR POST**
 ```
 {
 
@@ -52,7 +52,7 @@
 ```
 
 
-**REQUIRED KEY/VALUES
+**REQUIRED KEY/VALUES FOR POST**
 ```
 { 
  *latitude: float number i.e. -0.234
@@ -60,10 +60,10 @@
  *physical_address: STRING - OPTIONAL
  }
 ```
-##TRUCKS ENDPOINTS 🚎🚌:
-----------------------------------------------------------------------------
+## TRUCKS ENDPOINTS 🚎🚌:
+**----------------------------------------------------------------------------**
 
-**/[GET] endpoint for all trucks in the database /
+**/[GET] endpoint for all trucks in the database /**
 ```
 /api/trucks
 ```
@@ -83,7 +83,7 @@
 ```
 /api/users/:user_id/trucks/
 ```
-**REQUIRED KEY/VALUES**
+**REQUIRED KEY/VALUES FOR POST**
 ```
 {
 
@@ -107,7 +107,7 @@
 ```
 /api/trucks/:truck_id/location/
 ```
-**REQUIRED KEY/VALUES
+**REQUIRED KEY/VALUES FOR POST**
 ```
 {
 
@@ -121,7 +121,7 @@
 ```
 /api/users/:user_id/trucks/:truck_id
 ```
-**REQUIRED KEY/VALUES
+**REQUIRED KEY/VALUES FOR PUT**
 ```
 {
 
@@ -133,7 +133,7 @@
 ```
 
 **REQUIREMENTS; AN OPERATOR MUST FILL OUT THE FOLLOWING PROPERTIES TO "PUT" A TRUCK: **
-
+```
 *truckName
 *truckImg
 *cuisineType_id   --- This should be a radio button with an value of either option:
@@ -142,27 +142,25 @@
 *3-European
 *4-Australian
 NOTE; MAKE A "GET" REQUEST WITH THE TRUCK ID A USER WANTS TO UPDATE IN ORDER TO AUTOMATICALLY FILL OUT THE INPUTS WITH EXISTING TRUCK VALUES
-
+```
 **/[DELETE] endpoint for a user's truck in the database /**
 ```
 /api/users/:user_id/trucks/:truck_id
 ```
 
-##MENU-ITEMS ENDPOINTS 🚎🚌:
--------------------------------------------------------------------------------------
+## MENU-ITEMS ENDPOINTS 🚎🚌:
+**-------------------------------------------------------------------------------------**
 
 **/[GET] endpoint for getting a single truck's menuitems based on the truck_id in the database /**
 ```
 /api/trucks/:truck_id/menuitems
 ```
 
-/api/trucks/:truck_id/menuitems
 **/[POST] endpoint for creating a truck's menu item in the database /**
 ```
 /api/trucks/:truck_id/menuitems
 ```
-
-**REQUIRED KEY/VALUES
+**REQUIRED KEY/VALUES FOR POST**
 ```
 {
 
