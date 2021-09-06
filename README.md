@@ -13,6 +13,7 @@
 ```
 
 **/ REQUIREMENTS; A USER MUST BE LOGGED IN, AS WELL AS IT SHOULD BE AN OPERATOR /**
+
 ----------------------------------------------------------------
 **/[POST] - Register endpoint for a new user in the database/**
 ```
@@ -45,7 +46,7 @@
 }
  ```
 ----------------------------------------------------------------
-**/[POST] - endpoint for a creating a user's location in the database / **
+**/[POST] - endpoint for a creating a user's location in the database /**
 ```
 /api/users/:user_id/currentlocation
 ```
@@ -59,7 +60,7 @@
  *physical_address: STRING - OPTIONAL
  }
 ```
-
+-----------------------------------------------------------------
 
 ## TRUCKS ENDPOINTS 🚎🚌:
 
@@ -79,6 +80,7 @@
 ```
 
 **REQUIREMENTS; A USER MUST BE LOGGED IN**
+
 ----------------------------------------------------------------
 **/[POST] endpoint for creating a truck for a user/**
 ```
