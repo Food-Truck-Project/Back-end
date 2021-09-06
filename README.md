@@ -99,15 +99,15 @@
 }
 ```
 
-**REQUIREMENTS; AN OPERATOR MUST FILL OUT THE FOLLOWING PROPERTIES TO POST A TRUCK: **
+**/ REQUIREMENTS; AN OPERATOR MUST FILL OUT THE FOLLOWING PROPERTIES TO POST A TRUCK: /**
 
-*truckName*
-*truckImg*
-*cuisineType_id   --- This should be a radio button with an value of either one of the options:*
-*1-Asian*
-*2-American*
-*3-European*
-*4-Australian*
+*truckName
+*truckImg
+*cuisineType_id   --- This should be a radio button with an value of either one of the options:
+*1-Asian
+*2-American
+*3-European
+*4-Australian
 
 ----------------------------------------------------------------
 **/ [POST] endpoint for creating a location for a truck /**
@@ -140,7 +140,7 @@
 }
 ```
 
-**REQUIREMENTS; AN OPERATOR MUST FILL OUT THE FOLLOWING PROPERTIES TO "PUT" A TRUCK: **
+**/ REQUIREMENTS; AN OPERATOR MUST FILL OUT THE FOLLOWING PROPERTIES TO "PUT" A TRUCK: /**
 
 ```
 *truckName
@@ -171,7 +171,7 @@ NOTE; MAKE A "GET" REQUEST WITH THE TRUCK ID A USER WANTS TO UPDATE IN ORDER TO 
 /api/trucks/:truck_id/menuitems
 ```
 
-**REQUIRED KEY/VALUES FOR POST**
+**/ REQUIRED KEY/VALUES FOR POST /**
 
 ```
 {
