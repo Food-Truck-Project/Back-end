@@ -82,20 +82,23 @@
 **REQUIREMENTS; A USER MUST BE LOGGED IN**
 
 ----------------------------------------------------------------
-**/[POST] endpoint for creating a truck for a user/**
+
+**/ [POST] endpoint for creating a truck for a user /**
 ```
 /api/users/:user_id/trucks/
 ```
+
 **REQUIRED KEY/VALUES FOR POST**
 ```
 {
 
-  *truckName: STRING
-  *truckImg: STRING
-  *cuisineType_id: NUMBER IN A STRING -- SEE BELOW
+  truckName: STRING
+  truckImg: STRING
+  cuisineType_id: NUMBER IN A STRING -- SEE BELOW
   
 }
 ```
+
 **REQUIREMENTS; AN OPERATOR MUST FILL OUT THE FOLLOWING PROPERTIES TO POST A TRUCK: **
 
 *truckName*
@@ -107,7 +110,7 @@
 *4-Australian*
 
 ----------------------------------------------------------------
-**/[POST] endpoint for creating a location for a truck /**
+**/ [POST] endpoint for creating a location for a truck /**
 ```
 /api/trucks/:truck_id/location/
 ```
@@ -115,8 +118,8 @@
 ```
 {
 
-  *location: STRING
-  *departureTime: STRING
+  location: STRING
+  departureTime: STRING
   
 }
 ```
@@ -125,18 +128,20 @@
 ```
 /api/users/:user_id/trucks/:truck_id
 ```
+
 **REQUIRED KEY/VALUES FOR PUT**
 ```
 {
 
-  *truckName: STRING
-  *truckImg: STRING
-  *cuisineType_id: NUMBER IN A STRING -- SEE BELOW
+  truckName: STRING
+  truckImg: STRING
+  cuisineType_id: NUMBER IN A STRING -- SEE BELOW
   
 }
 ```
 
 **REQUIREMENTS; AN OPERATOR MUST FILL OUT THE FOLLOWING PROPERTIES TO "PUT" A TRUCK: **
+
 ```
 *truckName
 *truckImg
@@ -147,6 +152,7 @@
 *4-Australian
 NOTE; MAKE A "GET" REQUEST WITH THE TRUCK ID A USER WANTS TO UPDATE IN ORDER TO AUTOMATICALLY FILL OUT THE INPUTS WITH EXISTING TRUCK VALUES
 ```
+
 ----------------------------------------------------------------
 **/[DELETE] endpoint for a user's truck in the database /**
 ```
@@ -164,7 +170,9 @@ NOTE; MAKE A "GET" REQUEST WITH THE TRUCK ID A USER WANTS TO UPDATE IN ORDER TO 
 ```
 /api/trucks/:truck_id/menuitems
 ```
+
 **REQUIRED KEY/VALUES FOR POST**
+
 ```
 {
 
